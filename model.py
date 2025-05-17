@@ -7,12 +7,12 @@ import pandas as pd
 from google.colab import files
 uploaded = files.upload()
 
-mport pandas as pd
+import pandas as pd
 
 # Load the CSV with error handling
 df = pd.read_csv("Bitext_Sample_Customer_Support_Training_Dataset_27K_responses-v11 (1).csv",
-                 on_bad_lines='skip',  # Skip corrupted rows
-                 engine='python')      # Use the more flexible parser
+                 on_bad_lines='skip',  
+                 engine='python')      
 
 # Keep only the useful columns
 df = df[['instruction', 'response']].dropna()
@@ -26,7 +26,6 @@ from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 tokenizer = AutoTokenizer.from_pretrained("google/flan-t5-small")
 model = AutoModelForSeq2SeqLM.from_pretrained("google/flan-t5-small")
 
- Re-run this if tokenized_dataset is missing
  
 from transformers import TrainingArguments
 
@@ -39,7 +38,7 @@ training_args = TrainingArguments(
     save_steps=100,
     save_total_limit=2,
     weight_decay=0.01,
-    report_to="none"
+    report_to="none")
 
 
 
